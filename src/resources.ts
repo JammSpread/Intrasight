@@ -22,6 +22,17 @@ export class ResourcesDataProvider implements vscode.TreeDataProvider<ResourcesM
                 collapsibleState:vscode.TreeItemCollapsibleState.None
             },
             {
+                label:"DuckDuckGo",
+                customQuerySyntax:"/?q=",
+                querySyntax:QueryProvider.getQuerySyntax("/?q=") ,
+                websiteURL:"https://www.duckduckgo.com",
+                language: QueryProvider.getLanguage(),
+                query:QueryProvider.getSelectedText(),
+                icon:"duckduckgo.png",
+                description:QueryProvider.getLanguageForDescription() + QueryProvider.getSelectedText(),
+                collapsibleState:vscode.TreeItemCollapsibleState.None
+            },
+            {
                 label: "Youtube",
                 customQuerySyntax:"/results?search_query=",
                 querySyntax:QueryProvider.getQuerySyntax("/results?search_query="),
