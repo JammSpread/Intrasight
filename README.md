@@ -1,4 +1,5 @@
 # **Intrasight: Search in VSCode**
+*Based on [Insight](https://marketplace.visualstudio.com/items?itemName=TMcGinn.insight) by [TMcGinn](https://marketplace.visualstudio.com/publishers/TMcGinn)*
 
 ## Description
 
@@ -14,21 +15,21 @@ A VS Code extension for quick access and smart queries of developer resources su
 
 > **TIP:** Highlight language keywords for best results.
 
-![Highlight Search](https://github.com/TylerMcGinn/Insight/blob/master/Media/highlightSearch.gif?raw=true)
+![Highlight Search](https://github.com/JammSpread/Intrasight/blob/master/Media/highlightSearch.gif?raw=true)
 
 **Custom Search**
 
-![Custom Search](https://github.com/TylerMcGinn/Insight/blob/master/Media/customSearch.gif?raw=true)
+![Custom Search](https://github.com/JammSpread/Intrasight/blob/master/Media/customSearch.gif?raw=true)
 
 **Search StackOverflow**
 
 > **NOTE:** The StackOverflow API does not provide as good of results as a direct search.
 
-![StackOverflow Search](https://github.com/TylerMcGinn/Insight/blob/master/Media/stackOverflowSearch.gif?raw=true)
+![StackOverflow Search](https://github.com/JammSpread/Intrasight/blob/master/Media/stackOverflowSearch.gif?raw=true)
 
 **Documentation Search**
 
-![Documentation](https://github.com/TylerMcGinn/Insight/blob/master/Media/documentation.gif?raw=true)
+![Documentation](https://github.com/JammSpread/Intrasight/blob/master/Media/documentation.gif?raw=true)
 
 ## Extension Settings
 Use `Intrasight.StackOverflowNumberOfDisplayedResults` to set the displayed number of StackOverflow search results. 15 by Default:
@@ -43,7 +44,7 @@ Use `Intrasight.StackOverflowNumberOfDisplayedResults` to set the displayed numb
 - Added documentation links for Express, React, Angular, Bootstrap, Sass, Gatsby, GraphQL, React Navive, Ionic
 
 ## Issues
-### Please submit any issues or suggestions [here](https://github.com/TylerMcGinn/Insight/issues).
+### Please submit any issues or suggestions [here](https://github.com/JammSpread/Intrasight/issues).
 
 ## Contribution
-### Fork the [repo](https://github.com/TylerMcGinn/Insight) and submit pull requests.
+### Fork the [repo](https://github.com/JammSpread/Intrasight) and submit pull requests.
