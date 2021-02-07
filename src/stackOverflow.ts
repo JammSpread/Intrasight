@@ -24,7 +24,7 @@ export class StackOverflowProvider implements vscode.TreeDataProvider<StackOverf
         else{
             return new Promise((resolve, reject)=>{
                 let query = encodeURIComponent(this.userQuery);
-                let config = vscode.workspace.getConfiguration("Insight",vscode.window.activeTextEditor.document.uri);
+                let config = vscode.workspace.getConfiguration("Intrasight",vscode.window.activeTextEditor.document.uri);
                 let numDisplayResults = config.get('StackOverflowNumberOfDisplayedResults',15);
                 https.get(`https://api.stackexchange.com/2.2/search?page=1&pagesize=${numDisplayResults}&order=desc&sort=relevance&intitle=${query}&site=stackoverflow`, (res)=>{
                     let raw = '';

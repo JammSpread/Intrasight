@@ -1,4 +1,4 @@
-# **Insight: Search in VSCode**
+# **Intrasight: Search in VSCode**
 
 ## Description
 
@@ -31,10 +31,10 @@ A VS Code extension for quick access and smart queries of developer resources su
 ![Documentation](https://github.com/TylerMcGinn/Insight/blob/master/Media/documentation.gif?raw=true)
 
 ## Extension Settings
-Use `Insight.StackOverflowNumberOfDisplayedResults` to set the displayed number of StackOverflow search results. 15 by Default:
+Use `Intrasight.StackOverflowNumberOfDisplayedResults` to set the displayed number of StackOverflow search results. 15 by Default:
 ```json
 {
-    "Insight.StackOverflowNumberOfDisplayedResults":15
+    "Intrasight.StackOverflowNumberOfDisplayedResults":15
 }
 ```
 

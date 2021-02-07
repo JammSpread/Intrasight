@@ -1,15 +1,15 @@
 {
 	"author": {
-		"name": "Tyler McGinn",
-		"email": "systematyler@gmail.com"
+		"name": "JK",
+		"email": "u.sslooky@gmail.com"
 	},
-	"name": "insight",
-	"displayName": "Insight",
-	"description": "VS Code extension for quick access and smart queries of Developer resources such as Google,Stackoverflow,Youtube,MSDN and W3 Schools.",
+	"name": "intrasight",
+	"displayName": "Intrasight",
+	"description": "A fork of @TylerMcGinn's VS Code extension that allows you to search external sites within the editor.",
 	"version": "1.0.1",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/TylerMcGinn/Insight.git"
+		"url": "https://github.com/JammSpread/Intrasight.git"
 	},
 	"icon": "Media/128x128_eye.png",
 	"publisher": "TMcGinn",	
@@ -20,18 +20,9 @@
 		"Other"
 	],
 	"keywords": [
-		"stackoverflow",
-		"google",
-		"youtube",
-		"msdn",
-		"w3 schools",
-		"documentation",
-		"help",
-		"video",
-		"reference",
-		"learn",
-		"resources"
-		
+		"vscode",
+		"extension",
+		"search"
 	],
 	"activationEvents": [
 		"*",
@@ -115,9 +106,9 @@
 			]
 		},
 		"configuration":{
-			"title": "Insight extension configuration",
+			"title": "Intrasight Extension Configuration",
 			"properties": {
-				"Insight.StackOverflowNumberOfDisplayedResults":{
+				"Intrasight.StackOverflowNumberOfDisplayedResults":{
 					"type":"number",
 					"default":15,
 					"description": "The number of results to be displayed from a search of StackOverflow. Default 15.",
