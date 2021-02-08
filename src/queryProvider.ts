@@ -15,8 +15,8 @@ export class QueryProvider {
 	}
 
 	static getSelectedText(): string {
-		let selection = this.getTextPosition(vscode.window.activeTextEditor)
-		let data = vscode.window.activeTextEditor.document.getText(
+		const selection = this.getTextPosition(vscode.window.activeTextEditor)
+		const data = vscode.window.activeTextEditor.document.getText(
 			new vscode.Range(
 				new vscode.Position(selection.lineStart, selection.indexStart),
 				new vscode.Position(selection.lineEnd, selection.indexEnd),
@@ -28,43 +28,40 @@ export class QueryProvider {
 	static getLanguage(): string {
 		if (this.getSelectedText() === "") {
 			return ""
-		} else {
-			return vscode.window.activeTextEditor.document.languageId + "+"
 		}
+		return `${vscode.window.activeTextEditor.document.languageId}+`
 	}
 
 	static getLanguageForDescription(): string {
 		if (this.getSelectedText() === "") {
 			return ""
-		} else {
-			return vscode.window.activeTextEditor.document.languageId + ": "
 		}
+		return `${vscode.window.activeTextEditor.document.languageId}: `
 	}
 
 	static getQuerySyntax(syntax: string): string {
 		if (this.getSelectedText() === "") {
 			return ""
-		} else {
-			return syntax
 		}
+		return syntax
 	}
 
-	static refreshResourcesTree(): void {
-		let resourcesProvider = new ResourcesDataProvider()
-		vscode.window.registerTreeDataProvider("Menu1", resourcesProvider)
+	static refreshResourcesTree() {
+		vscode.window.registerTreeDataProvider("Menu1", new ResourcesDataProvider())
 	}
 
-	static refreshStackOverflowSearchTree(userQuery: string | undefined): void {
-		let stackOverflowProvider = new StackOverflowProvider(userQuery)
-		vscode.window.registerTreeDataProvider("Menu2", stackOverflowProvider)
+	static refreshStackOverflowSearchTree(userQuery: string | undefined) {
+		vscode.window.registerTreeDataProvider(
+			"Menu2",
+			new StackOverflowProvider(userQuery),
+		)
 	}
 
 	static getUserInput(): Thenable<string> {
-		let userQuery = vscode.window.showInputBox({
+		return vscode.window.showInputBox({
 			prompt: "Enter Search Query!",
 			placeHolder: "ex: Python print() function",
 			ignoreFocusOut: true,
 		})
-		return userQuery
 	}
 }
