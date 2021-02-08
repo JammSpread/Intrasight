@@ -7,7 +7,7 @@ export class QueryProvider {
 	private static getTextPosition(
 		editor: vscode.TextEditor | undefined,
 	): SelectedTextModel {
-		let text: any = []
+		let text: string[] | vscode.Selection = [""]
 		if (editor) {
 			text = editor.selection
 		}
