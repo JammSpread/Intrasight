@@ -2,6 +2,18 @@ import * as vscode from "vscode"
 import * as path from "path"
 import { QueryProvider } from "./queryProvider"
 
+class SearchEngine {
+	querySyntax: string
+	constructor(
+		public readonly label: string,
+		public readonly websiteURL: string,
+		public readonly customQuerySyntax: string,
+		public readonly icon: string,
+	) {
+		this.querySyntax = QueryProvider.getQuerySyntax(customQuerySyntax)
+	}
+}
+
 export class ResourcesDataProvider
 	implements vscode.TreeDataProvider<ResourcesModel> {
 	getTreeItem(
@@ -11,143 +23,95 @@ export class ResourcesDataProvider
 	}
 
 	getChildren(): ResourcesModel[] {
-		let websiteList = [
+		const engines = [
 			{
-				label: "Google",
-				customQuerySyntax: "/search?q=",
-				querySyntax: QueryProvider.getQuerySyntax("/search?q="),
-				websiteURL: "https://www.google.com",
-				language: QueryProvider.getLanguage(),
-				query: QueryProvider.getSelectedText(),
-				icon: "google.png",
-				description:
-					QueryProvider.getLanguageForDescription() +
-					QueryProvider.getSelectedText(),
-				collapsibleState: vscode.TreeItemCollapsibleState.None,
+				...new SearchEngine(
+					"Google",
+					"https://google.com",
+					"/search?q=",
+					"google.png",
+				),
 			},
 			{
-				label: "DuckDuckGo",
-				customQuerySyntax: "/?q=",
-				querySyntax: QueryProvider.getQuerySyntax("/?q="),
-				websiteURL: "https://www.duckduckgo.com",
-				language: QueryProvider.getLanguage(),
-				query: QueryProvider.getSelectedText(),
-				icon: "duckduckgo.png",
-				description:
-					QueryProvider.getLanguageForDescription() +
-					QueryProvider.getSelectedText(),
-				collapsibleState: vscode.TreeItemCollapsibleState.None,
+				...new SearchEngine(
+					"DuckDuckGo",
+					"https://duckduckgo.com",
+					"/?q=",
+					"duckduckgo.png",
+				),
 			},
 			{
-				label: "Youtube",
-				customQuerySyntax: "/results?search_query=",
-				querySyntax: QueryProvider.getQuerySyntax("/results?search_query="),
-				websiteURL: "https://www.youtube.com",
-				language: QueryProvider.getLanguage(),
-				query: QueryProvider.getSelectedText(),
-				icon: "youtube.png",
-				description:
-					QueryProvider.getLanguageForDescription() +
-					QueryProvider.getSelectedText(),
-				collapsibleState: vscode.TreeItemCollapsibleState.None,
+				...new SearchEngine(
+					"YouTube",
+					"https://youtube.com",
+					"/results?search_query=",
+					"youtube.png",
+				),
 			},
 			{
-				label: "StackOverflow",
-				customQuerySyntax: "/search?q=",
-				querySyntax: QueryProvider.getQuerySyntax("/search?q="),
-				websiteURL: "https://stackoverflow.com",
-				language: QueryProvider.getLanguage(),
-				query: QueryProvider.getSelectedText(),
-				icon: "stackoverflow.png",
-				description:
-					QueryProvider.getLanguageForDescription() +
-					QueryProvider.getSelectedText(),
-				collapsibleState: vscode.TreeItemCollapsibleState.None,
+				...new SearchEngine(
+					"StackOverflow",
+					"https://stackoverflow.com",
+					"/search?q=",
+					"stackoverflow.png",
+				),
 			},
 			{
-				label: "MSDN",
-				customQuerySyntax: "/search/en-US?query=",
-				querySyntax: QueryProvider.getQuerySyntax("/search/en-US?query="),
-				websiteURL: "https://social.msdn.microsoft.com",
-				language: QueryProvider.getLanguage(),
-				query: QueryProvider.getSelectedText(),
-				icon: "microsoft.png",
-				description:
-					QueryProvider.getLanguageForDescription() +
-					QueryProvider.getSelectedText(),
-				collapsibleState: vscode.TreeItemCollapsibleState.None,
+				...new SearchEngine(
+					"MSDN",
+					"https://social.msdn.microsoft.com",
+					"/search/en-US?query=",
+					"microsoft.png",
+				),
 			},
 		]
-		let menuItems: ResourcesModel[] = []
-		if (websiteList.length !== 0) {
-			for (let i = 0; i < websiteList.length; i++) {
-				let label = websiteList[i].label
-				let customQuerySyntax = websiteList[i].customQuerySyntax
-				let querySyntax = websiteList[i].querySyntax
-				let websiteURL = websiteList[i].websiteURL
-				let language = websiteList[i].language
-				let query = websiteList[i].query
-				let icon = websiteList[i].icon
-				let description = websiteList[i].description
-				let collapsibleState = websiteList[i].collapsibleState
-				menuItems.push(
-					new ResourcesModel(
-						label,
-						customQuerySyntax,
-						querySyntax,
-						websiteURL,
-						language,
-						query,
-						icon,
-						description,
-						collapsibleState,
-						{
-							command: "Resources.search",
-							title: "",
-							arguments: [websiteURL, querySyntax, language, query],
-						},
-					),
-				)
-			}
-		}
+		const menuItems: ResourcesModel[] = []
+		const lang = QueryProvider.getLanguage()
+		const query = QueryProvider.getSelectedText()
+		const desc =
+			QueryProvider.getLanguageForDescription() +
+			QueryProvider.getSelectedText()
+		engines.forEach(engine => {
+			menuItems.push(
+				new ResourcesModel(
+					engine.label,
+					engine.customQuerySyntax,
+					engine.querySyntax,
+					engine.websiteURL,
+					lang,
+					query,
+					engine.icon,
+					desc,
+					vscode.TreeItemCollapsibleState.None,
+					{
+						command: "Resources.search",
+						title: "",
+						arguments: [engine.websiteURL, engine.querySyntax, lang, query],
+					},
+				),
+			)
+		})
 		return menuItems
 	}
 }
 
 class ResourcesModel extends vscode.TreeItem {
-	icon: string
-	customQuerySyntax: string
-	querySyntax: string
-	websiteURL: string
-	language: string
-	query: string
-
 	constructor(
-		label: string,
-		customQuerySyntax: string,
-		querySyntax: string,
-		websiteURL: string,
-		language: string,
-		query: string,
-		icon: string,
-		description: string,
-		collapsibleState: vscode.TreeItemCollapsibleState,
-		command: vscode.Command,
+		public readonly label: string,
+		public readonly customQuerySyntax: string,
+		public readonly querySyntax: string,
+		public readonly websiteURL: string,
+		public readonly language: string,
+		public readonly query: string,
+		public readonly icon: string,
+		public readonly description: string,
+		public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+		public readonly command: vscode.Command,
 	) {
 		super(label, collapsibleState)
-		this.label = label
-		this.customQuerySyntax = customQuerySyntax
-		this.querySyntax = querySyntax
-		this.websiteURL = websiteURL
-		this.language = language
-		this.query = query
-		this.icon = icon
-		this.description = description
-		this.collapsibleState = collapsibleState
-		this.command = command
 		this.iconPath = {
-			dark: path.join(__filename, "..", "..", "Media", "Dark", this.icon),
-			light: path.join(__filename, "..", "..", "Media", "Light", this.icon),
+			dark: path.join(__filename, `../../Media/Dark/${this.icon}`),
+			light: path.join(__filename, `../../Media/Light/${this.icon}`),
 		}
 	}
 	contextValue = "MenuItem"
