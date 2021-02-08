@@ -1,28 +1,14 @@
 import { ResourcesDataProvider } from "./resources"
-import { SelectedTextModel } from "./SelectedTextModel"
 import { StackOverflowProvider } from "./stackOverflow"
 import * as vscode from "vscode"
 
 export class QueryProvider {
-	private static getTextPosition(
-		editor: vscode.TextEditor | undefined,
-	): SelectedTextModel {
-		let text: string[] | vscode.Selection = [""]
-		if (editor) {
-			text = editor.selection
-		}
-		return new SelectedTextModel(text)
-	}
-
 	static getSelectedText(): string {
-		const selection = this.getTextPosition(vscode.window.activeTextEditor)
-		const data = vscode.window.activeTextEditor.document.getText(
-			new vscode.Range(
-				new vscode.Position(selection.lineStart, selection.indexStart),
-				new vscode.Position(selection.lineEnd, selection.indexEnd),
-			),
-		)
-		return data
+		const editor = vscode.window.activeTextEditor
+		if (editor) {
+			return editor.document.getText(editor.selection)
+		}
+		return ""
 	}
 
 	static getLanguage(): string {
@@ -59,8 +45,7 @@ export class QueryProvider {
 
 	static getUserInput(): Thenable<string> {
 		return vscode.window.showInputBox({
-			prompt: "Enter Search Query!",
-			placeHolder: "ex: Python print() function",
+			placeHolder: "Search",
 			ignoreFocusOut: true,
 		})
 	}
