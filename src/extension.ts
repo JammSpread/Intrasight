@@ -3,7 +3,7 @@ import { QueryProvider } from "./queryProvider"
 import { DocsDataProvider } from "./Docs"
 
 export function activate(content: vscode.ExtensionContext) {
-	//////////////////////////////////////Resources Menu//////////////////////////////////////
+	// Search Resources Menu
 
 	vscode.commands.registerCommand(
 		"Resources.search",
@@ -17,7 +17,7 @@ export function activate(content: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand("Resources.customSearch", websiteQuery => {
 		QueryProvider.getUserInput().then(userQuery => {
-			if (userQuery !== undefined) {
+			if (userQuery) {
 				userQuery = encodeURIComponent(userQuery)
 				vscode.commands.executeCommand(
 					"vscode.open",
@@ -36,25 +36,25 @@ export function activate(content: vscode.ExtensionContext) {
 	)
 	QueryProvider.refreshResourcesTree()
 
-	//////////////////////////////////////Docs Menu//////////////////////////////////////
+	// Docs Menu
 
-	let DocsProvider = new DocsDataProvider()
+	const DocsProvider = new DocsDataProvider()
 	vscode.window.registerTreeDataProvider("Menu3", DocsProvider)
 	vscode.commands.registerCommand("Docs.launch", websiteURL =>
 		vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(websiteURL)),
 	)
 
-	//////////////////////////////////////StackOverflow Menu//////////////////////////////////////
+	// StackOverflow Menu
 
-	vscode.commands.registerCommand("StackOverflow.seach", () => {
-		QueryProvider.getUserInput().then(userQuery => {
-			QueryProvider.refreshStackOverflowSearchTree(userQuery)
-		})
-	})
+	vscode.commands.registerCommand("StackOverflow.search", () =>
+		QueryProvider.getUserInput().then(userQuery =>
+			QueryProvider.refreshStackOverflowSearchTree(userQuery),
+		),
+	)
 
-	vscode.commands.registerCommand("StackOverflow.launch", Url => {
-		vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(Url))
-	})
+	vscode.commands.registerCommand("StackOverflow.launch", Url =>
+		vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(Url)),
+	)
 
 	QueryProvider.refreshStackOverflowSearchTree("")
 }
