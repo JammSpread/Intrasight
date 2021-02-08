@@ -52,8 +52,8 @@
 				"title": "Launch Document in Browser"
 			},
 			{
-				"command": "StackOverflow.seach",
-				"title": "Seach StackOverflow",
+				"command": "StackOverflow.search",
+				"title": "Search StackOverflow",
 				"icon": {
 					"dark": "Media/Dark/search.png",
 					"light": "Media/Light/search.png"
@@ -68,7 +68,7 @@
 			"activitybar": [
 				{
 					"id": "Menu",
-					"title": "Insight",
+					"title": "Intrasight",
 					"icon": "Media/MenuIcon.png"
 				}
 			]
@@ -92,7 +92,7 @@
 		"menus": {
 			"view/title": [
 				{
-					"command": "StackOverflow.seach",
+					"command": "StackOverflow.search",
 					"when": "view == Menu2",
 					"group": "navigation"
 				}
