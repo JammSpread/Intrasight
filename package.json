@@ -119,16 +119,19 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn format && yarn compile",
+		"vscode:publish": "vsce package && date",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"test": "yarn compile && node ./node_modules/vscode/bin/test",
 		"format": "./format.sh"
 	},
+	"dependencies": {
+		"axios": "^0.21.1"
+	},
 	"devDependencies": {
 		"@types/node": "^10.12.21",
 		"prettier": "^2.2.1",
-		"typescript": "^3.3.1",
 		"vscode": "^1.1.28"
 	}
 }

@@ -1,26 +1,13 @@
+import axios from "axios"
 import * as vscode from "vscode"
-import * as https from "https"
-import * as path from "path"
-import * as zlib from "zlib"
+import { APISearchProvider, APISearchResult } from "./apiSearch"
+import { getIconPath } from "./util"
 
-export class StackOverflowProvider
-	implements vscode.TreeDataProvider<StackOverflowModel> {
-	constructor(public readonly userQuery: string) {}
-
-	getTreeItem(
-		element: StackOverflowModel,
-	): vscode.TreeItem | Thenable<vscode.TreeItem> {
-		return element
-	}
-
-	getChildren(): Thenable<StackOverflowModel[]> {
-		const menuArray: StackOverflowModel[] = []
-		if (this.userQuery === "" || this.userQuery === undefined) {
-			menuArray.push(this.returnNoResultsFound())
-			return Promise.resolve(menuArray)
-		}
-		return new Promise((resolve, reject) => {
-			const query = encodeURIComponent(this.userQuery)
+export class StackOverflowProvider extends APISearchProvider {
+	processItems(): Promise<StackOverflowResult[]> {
+		return new Promise(async resolve => {
+			const itemArray: StackOverflowResult[] = []
+			const query = encodeURIComponent(this.query)
 			const config = vscode.workspace.getConfiguration(
 				"Intrasight",
 				vscode.window.activeTextEditor.document.uri,
@@ -29,65 +16,30 @@ export class StackOverflowProvider
 				"StackOverflowNumberOfDisplayedResults",
 				15,
 			)
-			const url = `https://api.stackexchange.com/2.2/search?page=1&pagesize=${numDisplayResults}&order=desc&sort=relevance&intitle=${query}&site=stackoverflow`
-			https.get(url, res => {
-				const gunzip = zlib.createGunzip()
-				res.pipe(gunzip)
-				let raw = ""
-				gunzip
-					.on("data", data => (raw += data))
-					.on("end", () => {
-						const { items } = JSON.parse(raw)
-						if (items.length !== 0) {
-							for (const arrIndex in items) {
-								menuArray.push(
-									new StackOverflowModel(
-										items[arrIndex].title,
-										"stackoverflow.png",
-										vscode.TreeItemCollapsibleState.None,
-										items[arrIndex].link,
-										{
-											command: "StackOverflow.launch",
-											title: "",
-											arguments: [items[arrIndex].link],
-										},
-									),
-								)
-							}
-						} else {
-							menuArray.push(this.returnNoResultsFound())
-						}
-						resolve(menuArray)
-					})
-					.on("error", err => {
-						reject(err)
-					})
-			})
+			const api = `https://api.stackexchange.com/2.2/search?page=1&pagesize=${numDisplayResults}&order=desc&sort=relevance&intitle=${query}&site=stackoverflow`
+			const res = await axios(api)
+			const { items } = res.data
+			if (items.length !== 0) {
+				for (const arrIndex in items) {
+					const item = items[arrIndex]
+					itemArray.push(new StackOverflowResult(item.title, item.link))
+				}
+			}
+			resolve(itemArray)
 		})
 	}
 
-	returnNoResultsFound(): StackOverflowModel {
-		return new StackOverflowModel(
-			"No results found!",
-			"stackoverflow.png",
-			vscode.TreeItemCollapsibleState.None,
-		)
+	noResultsFallback(): StackOverflowResult {
+		return new StackOverflowResult("No results found!")
 	}
 }
 
-class StackOverflowModel extends vscode.TreeItem {
-	constructor(
-		public readonly label: string,
-		public readonly icon: string,
-		public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-		public readonly url?: string,
-		public readonly command?: vscode.Command,
-	) {
-		super(label, collapsibleState)
-		this.iconPath = {
-			dark: path.join(__filename, "..", "..", "Media", "Dark", this.icon),
-			light: path.join(__filename, "..", "..", "Media", "Light", this.icon),
-		}
+export class StackOverflowResult extends APISearchResult {
+	public readonly iconPath = {
+		dark: getIconPath("stackoverflow.png", "Dark"),
+		light: getIconPath("stackoverflow.png", "Light"),
 	}
-	contextValue = "searchResultItem"
+	constructor(label: string, public readonly url?: string) {
+		super(label, url, "StackOverflow.launch")
+	}
 }
