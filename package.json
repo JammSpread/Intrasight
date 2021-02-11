@@ -25,7 +25,7 @@
 		"search"
 	],
 	"activationEvents": [
-		"*",
+		"onStartupFinished",
 		"onView:Resources.customSearch",
 		"onView:Resources.search",
 		"onView:Docs.launch",
