@@ -118,8 +118,8 @@ class ResourcesModel extends vscode.TreeItem {
 	) {
 		super(label, collapsibleState)
 		this.iconPath = {
-			dark: path.join(__filename, `../../Media/Dark/${this.icon}`),
-			light: path.join(__filename, `../../Media/Light/${this.icon}`),
+			dark: path.join(__filename, `../../media/dark/${this.icon}`),
+			light: path.join(__filename, `../../media/light/${this.icon}`),
 		}
 	}
 	contextValue = "MenuItem"

@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import * as path from "path"
+import { getIconPath } from "./util"
 
 export class DocsDataProvider implements vscode.TreeDataProvider<DocsModel> {
 	getTreeItem(element: DocsModel): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -182,8 +182,8 @@ class DocsModel extends vscode.TreeItem {
 		this.icon = icon
 		this.command = command
 		this.iconPath = {
-			dark: path.join(__filename, "..", "..", "Media", "Dark", this.icon),
-			light: path.join(__filename, "..", "..", "Media", "Light", this.icon),
+			dark: getIconPath(this.icon, "dark"),
+			light: getIconPath(this.icon, "light"),
 		}
 	}
 }

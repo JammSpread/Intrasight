@@ -11,7 +11,7 @@
 		"type": "git",
 		"url": "https://github.com/JammSpread/Intrasight.git"
 	},
-	"icon": "Media/icon.png",
+	"icon": "media/icon.png",
 	"publisher": "undefined",
 	"engines": {
 		"vscode": "^1.34.0"
@@ -43,8 +43,8 @@
 				"command": "Resources.customSearch",
 				"title": "Custom Search",
 				"icon": {
-					"dark": "Media/Dark/search.png",
-					"light": "Media/Light/search.png"
+					"dark": "media/dark/search.png",
+					"light": "media/light/search.png"
 				}
 			},
 			{
@@ -55,8 +55,8 @@
 				"command": "StackOverflow.search",
 				"title": "Search StackOverflow",
 				"icon": {
-					"dark": "Media/Dark/search.png",
-					"light": "Media/Light/search.png"
+					"dark": "media/dark/search.png",
+					"light": "media/light/search.png"
 				}
 			},
 			{
@@ -69,7 +69,7 @@
 				{
 					"id": "Menu",
 					"title": "Intrasight",
-					"icon": "Media/menu.svg"
+					"icon": "media/menu.svg"
 				}
 			]
 		},

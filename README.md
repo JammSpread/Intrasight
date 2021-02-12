@@ -18,21 +18,21 @@ A VS Code extension for quick access and smart queries of developer resources su
 
 > **TIP:** Highlight language keywords for best results.
 
-![Highlight Search](https://github.com/JammSpread/Intrasight/blob/master/Media/highlightSearch.gif?raw=true)
+![Highlight Search](https://github.com/JammSpread/Intrasight/blob/master/media/highlightSearch.gif?raw=true)
 
 **Custom Search**
 
-![Custom Search](https://github.com/JammSpread/Intrasight/blob/master/Media/customSearch.gif?raw=true)
+![Custom Search](https://github.com/JammSpread/Intrasight/blob/master/media/customSearch.gif?raw=true)
 
 **Search StackOverflow**
 
 > **NOTE:** The StackOverflow API does not provide as good of results as a direct search.
 
-![StackOverflow Search](https://github.com/JammSpread/Intrasight/blob/master/Media/stackOverflowSearch.gif?raw=true)
+![StackOverflow Search](https://github.com/JammSpread/Intrasight/blob/master/media/stackOverflowSearch.gif?raw=true)
 
 **Documentation Search**
 
-![Documentation](https://github.com/JammSpread/Intrasight/blob/master/Media/documentation.gif?raw=true)
+![Documentation](https://github.com/JammSpread/Intrasight/blob/master/media/documentation.gif?raw=true)
 
 ## Extension Settings
 

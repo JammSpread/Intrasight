@@ -1,7 +1,7 @@
 import * as path from "path"
 
-export function getIconPath(filename: string, theme: "Dark" | "Light") {
-	return path.join(__filename, `../../Media/${theme}/${filename}`)
+export function getIconPath(filename: string, theme: "dark" | "light") {
+	return path.join(__filename, `../../media/${theme}/${filename}`)
 }
 
 // Map of HTML character entities

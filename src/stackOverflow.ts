@@ -36,8 +36,8 @@ export class StackOverflowProvider extends APISearchProvider {
 
 export class StackOverflowResult extends APISearchResult {
 	public readonly iconPath = {
-		dark: getIconPath("stackoverflow.png", "Dark"),
-		light: getIconPath("stackoverflow.png", "Light"),
+		dark: getIconPath("stackoverflow.png", "dark"),
+		light: getIconPath("stackoverflow.png", "light"),
 	}
 	constructor(label: string, public readonly url?: string) {
 		super(label, url, "StackOverflow.launch")
