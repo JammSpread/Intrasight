@@ -58,6 +58,14 @@ export class ResourcesDataProvider
 			},
 			{
 				...new SearchEngine(
+					"MDN",
+					"https://developer.mozilla.org",
+					"/search?q=",
+					"mdn.png",
+				),
+			},
+			{
+				...new SearchEngine(
 					"MSDN",
 					"https://social.msdn.microsoft.com",
 					"/search/en-US?query=",
