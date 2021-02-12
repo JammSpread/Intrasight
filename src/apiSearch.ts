@@ -6,7 +6,7 @@ interface IconPath {
 	light: string
 }
 
-export class APISearchProvider
+export abstract class APISearchProvider
 	implements vscode.TreeDataProvider<APISearchResult> {
 	constructor(public readonly query: string) {
 		this.query = query.trim()
