@@ -2,21 +2,14 @@ import axios from "axios"
 import * as vscode from "vscode"
 import { APISearchProvider, APISearchResult } from "./apiSearch"
 import { getIconPath } from "./util"
+import * as config from "./config"
 
 export class StackOverflowProvider extends APISearchProvider {
 	processItems(): Promise<StackOverflowResult[]> {
 		return new Promise(async resolve => {
 			const itemArray: StackOverflowResult[] = []
 			const query = encodeURIComponent(this.query)
-			const config = vscode.workspace.getConfiguration(
-				"Intrasight",
-				vscode.window.activeTextEditor.document.uri,
-			)
-			const numDisplayResults = config.get(
-				"StackOverflowNumberOfDisplayedResults",
-				15,
-			)
-			const api = `https://api.stackexchange.com/2.2/search?page=1&pagesize=${numDisplayResults}&order=desc&sort=relevance&intitle=${query}&site=stackoverflow`
+			const api = `https://api.stackexchange.com/2.2/search?page=1&pagesize=${config.stackOverflowDisplayedResults}&order=desc&sort=relevance&intitle=${query}&site=stackoverflow`
 			const res = await axios(api)
 			const { items } = res.data
 			if (items.length !== 0) {

@@ -108,10 +108,127 @@
 		"configuration": {
 			"title": "Intrasight Extension Configuration",
 			"properties": {
-				"Intrasight.StackOverflowNumberOfDisplayedResults": {
+				"intrasight.stackOverflowDisplayedResults": {
 					"type": "number",
 					"default": 15,
-					"description": "The number of results to be displayed from a search of StackOverflow. Default 15.",
+					"description": "The number of results to be displayed from a search of StackOverflow. The default is 15.",
+					"scope": "resource"
+				},
+				"intrasight.docs": {
+					"type": "array",
+					"default": [
+						{
+							"label": "Javascript",
+							"websiteURL": "https://www.w3schools.com/jsref/default.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "HTML",
+							"websiteURL": "https://www.w3schools.com/tags/default.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "CSS",
+							"websiteURL": "https://www.w3schools.com/cssref/default.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "JQuery",
+							"websiteURL": "https://www.w3schools.com/jquery/jquery_ref_overview.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "Python",
+							"websiteURL": "https://www.w3schools.com/python/python_reference.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "PHP",
+							"websiteURL": "https://www.w3schools.com/php7/php7_ref_overview.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "SQL",
+							"websiteURL": "https://www.w3schools.com/sql/sql_ref_keywords.asp",
+							"icon": "w3.png"
+						},
+						{
+							"label": "NodeJs",
+							"websiteURL": "https://nodejs.org/dist/latest-v10.x/docs/api/",
+							"icon": "nodejs.png"
+						},
+						{
+							"label": "Express",
+							"websiteURL": "https://expressjs.com/en/4x/api.html",
+							"icon": "express.png"
+						},
+						{
+							"label": "React",
+							"websiteURL": "https://reactjs.org/docs/getting-started.html",
+							"icon": "react.png"
+						},
+						{
+							"label": "Angular",
+							"websiteURL": "https://docs.angularjs.org/api",
+							"icon": "angular.png"
+						},
+						{
+							"label": "Bootstrap",
+							"websiteURL": "https://getbootstrap.com/docs/4.3/getting-started/introduction/",
+							"icon": "bootstrap.png"
+						},
+						{
+							"label": "Sass",
+							"websiteURL": "https://sass-lang.com/documentation",
+							"icon": "sass.png"
+						},
+						{
+							"label": "GraphQL",
+							"websiteURL": "https://graphql.org/code/",
+							"icon": "graphql.png"
+						},
+						{
+							"label": "Gatsby",
+							"websiteURL": "https://www.gatsbyjs.org/docs/",
+							"icon": "gatsby.png"
+						},
+						{
+							"label": "React Native",
+							"websiteURL": "https://facebook.github.io/react-native/docs/getting-started",
+							"icon": "react.png"
+						},
+						{
+							"label": "Ionic",
+							"websiteURL": "https://ionicframework.com/docs",
+							"icon": "ionic.png"
+						},
+						{
+							"label": "Python",
+							"websiteURL": "https://docs.python.org/3/reference/index.html",
+							"icon": "python.png"
+						},
+						{
+							"label": "Python Standard Lib",
+							"websiteURL": "https://docs.python.org/3/library/index.html",
+							"icon": "python.png"
+						},
+						{
+							"label": "C#",
+							"websiteURL": "https://docs.microsoft.com/en-gb/dotnet/csharp/language-reference/",
+							"icon": "microsoft.png"
+						},
+						{
+							"label": ".NET",
+							"websiteURL": "https://docs.microsoft.com/en-us/dotnet/api/?view=netframework-4.8",
+							"icon": "microsoft.png"
+						},
+						{
+							"label": ".NET CORE",
+							"websiteURL": "https://docs.microsoft.com/en-us/dotnet/api/?view=netcore-2.2",
+							"icon": "microsoft.png"
+						}
+					],
+					"description": "The documentation sources to be listed in the Intrasight sidebar.",
 					"scope": "resource"
 				}
 			}
