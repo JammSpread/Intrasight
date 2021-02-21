@@ -1,6 +1,6 @@
 import * as vscode from "vscode"
 import { QueryProvider } from "./queryProvider"
-import { DocsDataProvider } from "./Docs"
+import { DocsDataProvider } from "./docs"
 
 export function activate(content: vscode.ExtensionContext) {
 	// Search Resources Menu
