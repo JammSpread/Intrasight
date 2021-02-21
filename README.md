@@ -1,6 +1,6 @@
 # **Intrasight: Search in VSCode**
 
-_Based on [Insight](https://marketplace.visualstudio.com/items?itemName=TMcGinn.insight) by [TMcGinn](https://marketplace.visualstudio.com/publishers/TMcGinn)_
+_Based on and forked from [Insight](https://marketplace.visualstudio.com/items?itemName=TMcGinn.insight) by [TMcGinn](https://marketplace.visualstudio.com/publishers/TMcGinn)_
 
 ## Description
 
