@@ -12,17 +12,7 @@ export class QueryProvider {
 	}
 
 	static getLanguage(): string {
-		if (this.getSelectedText() === "") {
-			return ""
-		}
-		return `${vscode.window.activeTextEditor.document.languageId}+`
-	}
-
-	static getLanguageForDescription(): string {
-		if (this.getSelectedText() === "") {
-			return ""
-		}
-		return `${vscode.window.activeTextEditor.document.languageId}: `
+		return vscode.window.activeTextEditor.document.languageId
 	}
 
 	static getQuerySyntax(syntax: string): string {

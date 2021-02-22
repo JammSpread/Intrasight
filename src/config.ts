@@ -6,6 +6,10 @@ const config = vscode.workspace.getConfiguration(
 )
 
 export const docs = config.get("docs")
-export const stackOverflowDisplayedResults = config.get(
+export const languageInQuery: boolean = config.get("includeLanguageInQuery")
+export const showLanguageInDesc: boolean = config.get(
+	"showLanguageInDescription",
+)
+export const stackOverflowDisplayedResults: number = config.get(
 	"stackOverflowDisplayedResults",
 )

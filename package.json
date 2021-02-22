@@ -230,6 +230,18 @@
 					],
 					"description": "The documentation sources to be listed in the Intrasight sidebar.",
 					"scope": "resource"
+				},
+				"intrasight.includeLanguageInQuery": {
+					"type": "boolean",
+					"default": true,
+					"description": "Whether the file language show be included in search queries.",
+					"scope": "resource"
+				},
+				"intrasight.showLanguageInDescription": {
+					"type": "boolean",
+					"default": true,
+					"description": "Whether the file language should be shown next to search resources.",
+					"scope": "resource"
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 import * as vscode from "vscode"
 import * as path from "path"
 import { QueryProvider } from "./queryProvider"
+import * as config from "./config"
 
 class SearchEngine {
 	querySyntax: string
@@ -74,11 +75,15 @@ export class ResourcesDataProvider
 			},
 		]
 		const menuItems: ResourcesModel[] = []
-		const lang = QueryProvider.getLanguage()
+		const lang =
+			QueryProvider.getSelectedText() !== "" && config.languageInQuery
+				? `${QueryProvider.getLanguage()}+`
+				: ""
 		const query = QueryProvider.getSelectedText()
 		const desc =
-			QueryProvider.getLanguageForDescription() +
-			QueryProvider.getSelectedText()
+			(QueryProvider.getSelectedText() !== "" && config.showLanguageInDesc
+				? `${QueryProvider.getLanguage()}: }`
+				: "") + QueryProvider.getSelectedText()
 		engines.forEach(engine => {
 			menuItems.push(
 				new ResourcesModel(
