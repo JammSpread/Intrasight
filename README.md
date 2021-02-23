@@ -26,7 +26,7 @@ A VS Code extension for quick access and smart queries of developer resources su
 
 **Search StackOverflow**
 
-> **NOTE:** The search results of StackOverflow API aren't as good as a search on __stackoverflow.com__.
+> **NOTE:** The search results of StackOverflow API aren't as good as a search on **stackoverflow.com**.
 
 ![StackOverflow Search](https://github.com/JammSpread/Intrasight/blob/master/media/stackOverflowSearch.gif?raw=true)
 
