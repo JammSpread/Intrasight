@@ -53,7 +53,9 @@ A VS Code extension for quick access and smart queries of developer resources su
 	// (may help increase search specificity)
 	"intrasight.includeLanguageInQuery": true,
 	// Whether the file language should be shown next to search resources.
-	"intrasight.showLanguageInDescription": true
+	"intrasight.showLanguageInDescription": true,
+	// Whether GitHub Search automatically authenticates so it can fetch private repositories.
+	"intrasight.gitHubAuthentication": true
 }
 ```
 
