@@ -119,7 +119,7 @@
 			]
 		},
 		"configuration": {
-			"title": "Intrasight Extension Configuration",
+			"title": "Intrasight",
 			"properties": {
 				"intrasight.gitHubDisplayedResults": {
 					"title": "GitHub Displayed Results",
