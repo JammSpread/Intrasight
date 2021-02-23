@@ -4,7 +4,7 @@ _Based on and forked from [Insight](https://marketplace.visualstudio.com/items?i
 
 ## Description
 
-A VS Code extension for quick access and smart queries of developer resources such as Google, Stackoverflow and YouTube as well as documentation for popular languages and frameworks.
+A VS Code extension for quick access and smart queries of developer resources such as Google, StackOverflow and YouTube as well as documentation for popular languages and frameworks.
 
 ## Features
 
@@ -26,21 +26,34 @@ A VS Code extension for quick access and smart queries of developer resources su
 
 **Search StackOverflow**
 
-> **NOTE:** The StackOverflow API does not provide as good of results as a direct search.
+> **NOTE:** The search results of StackOverflow API aren't as good as a search on __stackoverflow.com__.
 
 ![StackOverflow Search](https://github.com/JammSpread/Intrasight/blob/master/media/stackOverflowSearch.gif?raw=true)
 
-**Documentation Search**
+**Documentation List**
 
 ![Documentation](https://github.com/JammSpread/Intrasight/blob/master/media/documentation.gif?raw=true)
 
 ## Extension Settings
 
-Use `Intrasight.StackOverflowNumberOfDisplayedResults` to set the displayed number of StackOverflow search results. 15 by Default:
-
-```json
+```jsonc
 {
-	"Intrasight.StackOverflowNumberOfDisplayedResults": 15
+	// The user-specified amount of results that should show up on search in-editor.
+	"intrasight.stackOverflowDisplayedResults": 15,
+	"intrasight.gitHubDisplayedResults": 15,
+	// The documentation sources to be listed in the Intrasight sidebar.
+	"intrasight.docs": [
+		{
+			"label": "Webpack",
+			"websiteURL": "https://webpack.js.org/concepts/",
+			"icon": "/home/Downloads/webpack.png"
+		}
+	],
+	// Whether the file language show be included in search queries.
+	// (may help increase search specificity)
+	"intrasight.includeLanguageInQuery": true,
+	// Whether the file language should be shown next to search resources.
+	"intrasight.showLanguageInDescription": true
 }
 ```
 
