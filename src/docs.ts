@@ -25,7 +25,7 @@ export class DocsDataProvider implements vscode.TreeDataProvider<DocsModel> {
 					doc.websiteURL,
 					doc.icon,
 					{
-						command: "Docs.launch",
+						command: "Intrasight.launch",
 						title: "",
 						arguments: [doc.websiteURL],
 					},

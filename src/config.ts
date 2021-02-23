@@ -6,6 +6,9 @@ const config = vscode.workspace.getConfiguration(
 )
 
 export const docs = config.get("docs")
+export const gitHubDisplayedResults: number = config.get(
+	"gitHubDisplayedResults",
+)
 export const languageInQuery: boolean = config.get("includeLanguageInQuery")
 export const showLanguageInDesc: boolean = config.get(
 	"showLanguageInDescription",

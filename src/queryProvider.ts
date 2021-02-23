@@ -1,6 +1,7 @@
 import { ResourcesDataProvider } from "./resources"
 import { StackOverflowProvider } from "./stackOverflow"
 import * as vscode from "vscode"
+import { GitHubProvider } from "./gitHub"
 
 export class QueryProvider {
 	static getSelectedText(): string {
@@ -30,6 +31,13 @@ export class QueryProvider {
 		vscode.window.registerTreeDataProvider(
 			"Menu2",
 			new StackOverflowProvider(userQuery),
+		)
+	}
+
+	static refreshGitHubSearchTree(userQuery: string | undefined) {
+		vscode.window.registerTreeDataProvider(
+			"Menu3",
+			new GitHubProvider(userQuery),
 		)
 	}
 

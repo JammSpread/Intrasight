@@ -14,7 +14,7 @@
 	"icon": "media/icon.png",
 	"publisher": "undefined",
 	"engines": {
-		"vscode": "^1.34.0"
+		"vscode": "^1.41.0"
 	},
 	"categories": [
 		"Other"
@@ -26,15 +26,19 @@
 	],
 	"activationEvents": [
 		"onStartupFinished",
+		"onView:Intrasight.launch",
 		"onView:Resources.customSearch",
 		"onView:Resources.search",
-		"onView:Docs.launch",
 		"onView:StackOverflow.search",
-		"onView:StackOverflow.launch"
+		"onView:GitHub.search"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "Intrasight.launch",
+				"title": "Launch Intrasight URL in Browser"
+			},
 			{
 				"command": "Resources.search",
 				"title": "Search"
@@ -48,10 +52,6 @@
 				}
 			},
 			{
-				"command": "Docs.launch",
-				"title": "Launch Document in Browser"
-			},
-			{
 				"command": "StackOverflow.search",
 				"title": "Search StackOverflow",
 				"icon": {
@@ -60,8 +60,12 @@
 				}
 			},
 			{
-				"command": "StackOverflow.launch",
-				"title": "Launch StackOverFlow in Browser"
+				"command": "GitHub.search",
+				"title": "Search GitHub",
+				"icon": {
+					"dark": "media/dark/search.png",
+					"light": "media/light/search.png"
+				}
 			}
 		],
 		"viewsContainers": {
@@ -85,6 +89,10 @@
 				},
 				{
 					"id": "Menu3",
+					"name": "GitHub Search"
+				},
+				{
+					"id": "Menu4",
 					"name": "Docs"
 				}
 			]
@@ -94,6 +102,11 @@
 				{
 					"command": "StackOverflow.search",
 					"when": "view == Menu2",
+					"group": "navigation"
+				},
+				{
+					"command": "GitHub.search",
+					"when": "view == Menu3",
 					"group": "navigation"
 				}
 			],
@@ -108,9 +121,19 @@
 		"configuration": {
 			"title": "Intrasight Extension Configuration",
 			"properties": {
+				"intrasight.gitHubDisplayedResults": {
+					"title": "GitHub Displayed Results",
+					"type": "number",
+					"default": 15,
+					"maximum": 100,
+					"minimum": 1,
+					"description": "The number of results to be displayed from a search of StackOverflow. The default is 15."
+				},
 				"intrasight.stackOverflowDisplayedResults": {
 					"type": "number",
 					"default": 15,
+					"maximum": 100,
+					"minimum": 1,
 					"description": "The number of results to be displayed from a search of StackOverflow. The default is 15.",
 					"scope": "resource"
 				},
@@ -256,11 +279,12 @@
 		"format": "./format.sh"
 	},
 	"dependencies": {
+		"@octokit/rest": "^18.2.0",
 		"axios": "^0.21.1"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.21",
 		"prettier": "^2.2.1",
-		"vscode": "^1.1.28"
+		"vscode": "^1.1.37"
 	}
 }

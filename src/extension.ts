@@ -3,6 +3,12 @@ import { QueryProvider } from "./queryProvider"
 import { DocsDataProvider } from "./docs"
 
 export function activate(content: vscode.ExtensionContext) {
+	// General
+
+	vscode.commands.registerCommand("Intrasight.launch", URL =>
+		vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(URL)),
+	)
+
 	// Search Resources Menu
 
 	vscode.commands.registerCommand(
@@ -39,10 +45,7 @@ export function activate(content: vscode.ExtensionContext) {
 	// Docs Menu
 
 	const DocsProvider = new DocsDataProvider()
-	vscode.window.registerTreeDataProvider("Menu3", DocsProvider)
-	vscode.commands.registerCommand("Docs.launch", websiteURL =>
-		vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(websiteURL)),
-	)
+	vscode.window.registerTreeDataProvider("Menu4", DocsProvider)
 
 	// StackOverflow Menu
 
@@ -52,9 +55,15 @@ export function activate(content: vscode.ExtensionContext) {
 		),
 	)
 
-	vscode.commands.registerCommand("StackOverflow.launch", Url =>
-		vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(Url)),
+	QueryProvider.refreshStackOverflowSearchTree("")
+
+	// GitHub Menu
+
+	vscode.commands.registerCommand("GitHub.search", () =>
+		QueryProvider.getUserInput().then(userQuery =>
+			QueryProvider.refreshGitHubSearchTree(userQuery),
+		),
 	)
 
-	QueryProvider.refreshStackOverflowSearchTree("")
+	QueryProvider.refreshGitHubSearchTree("")
 }

@@ -36,6 +36,6 @@ export class StackOverflowResult extends APISearchResult {
 		light: getIconPath("stackoverflow.png", "light"),
 	}
 	constructor(label: string, public readonly url?: string) {
-		super(label, url, "StackOverflow.launch")
+		super(label, url)
 	}
 }

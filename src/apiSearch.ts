@@ -27,7 +27,7 @@ export abstract class APISearchProvider
 		return items
 	}
 	/**
-	 * Fetch items from API and return them.
+	 * Fetch items from an API and return them.
 	 */
 	processItems(): Promise<APISearchResult[]> {
 		return Promise.resolve([])
@@ -44,11 +44,11 @@ export class APISearchResult extends vscode.TreeItem {
 	public readonly contextValue = "searchResultItem"
 	public readonly iconPath: IconPath
 
-	constructor(label: string, public readonly url?: string, command?: string) {
+	constructor(label: string, public readonly url?: string) {
 		super(decodeHTML(label), vscode.TreeItemCollapsibleState.None)
 		this.command = {
 			title: "",
-			command: url ? command : "",
+			command: url ? "Intrasight.launch" : "",
 			arguments: [url],
 		}
 	}
