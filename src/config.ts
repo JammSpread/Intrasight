@@ -6,6 +6,7 @@ const config = vscode.workspace.getConfiguration(
 )
 
 export const docs = config.get("docs")
+export const gitHubAuthentication: boolean = config.get("gitHubAuthentication")
 export const gitHubDisplayedResults: number = config.get(
 	"gitHubDisplayedResults",
 )

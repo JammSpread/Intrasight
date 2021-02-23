@@ -27,13 +27,13 @@ export abstract class APISearchProvider
 		return items
 	}
 	/**
-	 * Fetch items from an API and return them.
+	 * Fetchs items from an API and return them.
 	 */
 	processItems(): Promise<APISearchResult[]> {
 		return Promise.resolve([])
 	}
 	/**
-	 * Response upon absence of results.
+	 * Returns TreeView response upon absence of results.
 	 */
 	noResultsFallback(): APISearchResult {
 		return new APISearchResult("No results found!")
