@@ -1,7 +1,7 @@
-import { ResourcesDataProvider } from "./resources"
-import { StackOverflowProvider } from "./stackOverflow"
 import * as vscode from "vscode"
 import { GitHubProvider } from "./gitHub"
+import { ResourcesDataProvider } from "./resources"
+import { StackOverflowProvider } from "./stackOverflow"
 
 export class QueryProvider {
 	static getSelectedText(): string {

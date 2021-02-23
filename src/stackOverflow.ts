@@ -1,8 +1,8 @@
 import axios from "axios"
 import { APISearchProvider, APISearchResult } from "./apiSearch"
-import { getIconPath } from "./util"
 import * as config from "./config"
 import { QueryProvider } from "./queryProvider"
+import { getIconPath } from "./util"
 
 export class StackOverflowProvider extends APISearchProvider {
 	processItems(): Promise<StackOverflowResult[]> {

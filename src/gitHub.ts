@@ -1,9 +1,9 @@
 import { Octokit } from "@octokit/rest"
-import { APISearchProvider, APISearchResult } from "./apiSearch"
-import { getIconPath } from "./util"
-import * as config from "./config"
 import { authentication } from "vscode"
+import { APISearchProvider, APISearchResult } from "./apiSearch"
+import * as config from "./config"
 import { QueryProvider } from "./queryProvider"
+import { getIconPath } from "./util"
 
 export class GitHubProvider extends APISearchProvider {
 	private static accessToken?: string

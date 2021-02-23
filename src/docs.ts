@@ -1,6 +1,6 @@
 import * as vscode from "vscode"
-import { getIconPath } from "./util"
 import * as config from "./config"
+import { getIconPath } from "./util"
 
 interface Documentation {
 	label: string

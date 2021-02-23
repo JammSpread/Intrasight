@@ -1,7 +1,7 @@
-import * as vscode from "vscode"
 import * as path from "path"
-import { QueryProvider } from "./queryProvider"
+import * as vscode from "vscode"
 import * as config from "./config"
+import { QueryProvider } from "./queryProvider"
 
 class SearchEngine {
 	querySyntax: string
