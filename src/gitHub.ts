@@ -1,8 +1,7 @@
 import { Octokit } from "@octokit/rest"
-import { authentication } from "vscode"
+import * as vscode from "vscode"
 import { APISearchProvider, APISearchResult } from "./apiSearch"
 import * as config from "./config"
-import { QueryProvider } from "./queryProvider"
 import { getIconPath } from "./util"
 
 export class GitHubProvider extends APISearchProvider {
@@ -16,9 +15,7 @@ export class GitHubProvider extends APISearchProvider {
 			const itemArray: GitHubResult[] = []
 
 			if (!GitHubProvider.octokit) {
-				if (await this.createOctokit(itemArray, resolve)) {
-					return
-				}
+				await this.createOctokit()
 			}
 
 			// If currently rate limited show such and quit searching
@@ -72,43 +69,27 @@ export class GitHubProvider extends APISearchProvider {
 	}
 
 	/**
-	 * Create a new Octokit that may be authenticated with GitHub.
-	 * Returns boolean indicating whether or not to quit search process.
-	 * It does this because if authentication is attempted, then it notifies the user
-	 * and to clear the TreeView after doing so you must refresh it
-	 * (which creates a new GitHubProvider).
-	 * @param itemArray The array of GitHubResult models that should be resolved.
-	 * @param resolve The resolve method that updates the TreeView.
+	 * Creates a new Octokit that may be authenticated with GitHub.
 	 */
-	async createOctokit(
-		itemArray: GitHubResult[],
-		resolve: (value: GitHubResult[]) => void,
-	) {
+	async createOctokit() {
+		vscode.window.showInformationMessage(
+			"Attempting to authenticate. (This can be used to fetch private repositories.)",
+		)
 		if (config.gitHubAuthentication) {
-			// Notify the user of an attempt at authentication
-			itemArray.push(
-				new GitHubResult("Attempting to authenticate to fetch private repos."),
-			)
-			resolve(itemArray)
-
-			GitHubProvider.accessToken = (
-				await authentication.getSession("github", ["repo"], {
-					createIfNone: true,
-				})
-			).accessToken
+			try {
+				GitHubProvider.accessToken = (
+					await vscode.authentication.getSession("github", ["repo"], {
+						createIfNone: true,
+					})
+				).accessToken
+			} catch {
+				/* Authentication is optional */
+			}
 		}
 
 		GitHubProvider.octokit = new Octokit({
 			auth: GitHubProvider.accessToken,
 		})
-
-		if (config.gitHubAuthentication) {
-			// If attempting authentication retry searching instead of continuing
-			QueryProvider.refreshGitHubSearchTree(this.query)
-			return true
-		}
-
-		return false
 	}
 
 	/**
