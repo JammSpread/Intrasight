@@ -1,4 +1,8 @@
-# **Intrasight: Search in VSCode**
+<h1 align="center">
+	<img src="https://github.com/JammSpread/Intrasight/blob/master/media/icon.png?raw=true" alt="intrasight" width="200">
+	<br>
+	Intrasight: Search in VSCode
+</h1>
 
 _Based on and forked from [Insight](https://marketplace.visualstudio.com/items?itemName=TMcGinn.insight) by [TMcGinn](https://marketplace.visualstudio.com/publishers/TMcGinn)_
 
