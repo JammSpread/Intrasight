@@ -82,7 +82,7 @@ export class ResourcesDataProvider
 		const query = QueryProvider.getSelectedText()
 		const desc =
 			(QueryProvider.getSelectedText() !== "" && config.showLanguageInDesc
-				? `${QueryProvider.getLanguage()}: }`
+				? `${QueryProvider.getLanguage()}: `
 				: "") + QueryProvider.getSelectedText()
 		engines.forEach(engine => {
 			menuItems.push(
