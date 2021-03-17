@@ -18,7 +18,14 @@ export class StackOverflowProvider extends APISearchProvider {
 			if (items.length !== 0) {
 				for (const arrIndex in items) {
 					const item = items[arrIndex]
-					itemArray.push(new StackOverflowResult(item.title, item.link))
+					itemArray.push(
+						new StackOverflowResult(
+							`${item["is_answered"] ? "🗹" : ""}${item.score >= 0 ? "⬆" : "⬇"}${
+								item.score
+							} ${item.title}`,
+							item.link,
+						),
+					)
 				}
 			}
 			resolve(itemArray)
