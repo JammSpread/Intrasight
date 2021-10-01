@@ -284,7 +284,7 @@
 	},
 	"dependencies": {
 		"@octokit/rest": "^18.2.0",
-		"axios": "^0.21.1"
+		"axios": "^0.21.2"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.21",
